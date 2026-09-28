@@ -4,6 +4,8 @@ Atividade Prática — Arquitetura de Software (ESW430) — UniRV
 
 ## Integrantes
 - Fabricio Salvino Martins
+- Henrique Antunes da Silva
+- João Paulo Gomes de Oliveira Sousa
 
 ## Linguagem e framework
 - Java 17 (JDK 17 ou superior)
