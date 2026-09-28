@@ -1,0 +1,25 @@
+[ {
+  "id" : 1,
+  "nome" : "Ana Souza",
+  "cpf" : "111.222.333-44",
+  "email" : "ana.souza@email.com",
+  "telefone" : "(64) 99999-0001"
+}, {
+  "id" : 2,
+  "nome" : "Bruno Lima",
+  "cpf" : "222.333.444-55",
+  "email" : "bruno.lima@email.com",
+  "telefone" : "(64) 99999-0002"
+}, {
+  "id" : 4,
+  "nome" : "Fabricio Salvino Martins",
+  "cpf" : "76545678612",
+  "email" : "fabriciosm98@gmail.com",
+  "telefone" : "64999050938"
+}, {
+  "id" : 5,
+  "nome" : "abc",
+  "cpf" : "7774284",
+  "email" : "favejfjwfm@gmail.com",
+  "telefone" : "44567788875"
+} ]
