@@ -2,61 +2,44 @@
 <html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Veículo - Garagem de Veículos</title>
-    <style>
-        body { font-family: Arial, sans-serif; max-width: 960px; margin: 30px auto; padding: 0 16px; }
-        nav a { margin-right: 14px; font-weight: bold; color: #1d4ed8; text-decoration: none; }
-        table { width: 100%; border-collapse: collapse; margin-top: 16px; }
-        th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
-        th { background: #f0f0f0; }
-        label { display: block; margin-top: 12px; font-weight: bold; }
-        input, select { padding: 8px; box-sizing: border-box; }
-        .botao { display: inline-block; padding: 6px 12px; background: #1d4ed8; color: #fff; text-decoration: none; border: none; border-radius: 4px; cursor: pointer; font-size: 14px; }
-        .botao-vermelho { background: #b91c1c; }
-        .botao-cinza { background: #6b7280; }
-        .sucesso { background: #dcfce7; color: #166534; padding: 10px; border-radius: 4px; }
-        .erro { background: #fee2e2; color: #991b1b; padding: 10px; border-radius: 4px; }
-        .msg-erro { color: #b91c1c; font-size: 14px; }
-        .disponivel { color: #166534; font-weight: bold; }
-        .reservado { color: #b91c1c; font-weight: bold; }
-        .caixa { border: 1px solid #ccc; border-radius: 6px; padding: 12px 16px; margin-top: 16px; }
-        form.inline { display: inline; }
-        input { width: 100%; }
-        body { max-width: 600px; }
-    </style>
+    <link rel="stylesheet" th:href="@{/css/app.css}">
 </head>
 <body>
+<div th:replace="~{fragments/layout :: topo('veiculos')}"></div>
 
-<!-- O mesmo formulario serve para CADASTRAR (id = 0) e EDITAR (id > 0) -->
-<h1 th:text="${veiculo.id == 0} ? 'Novo veículo' : 'Editar veículo'">Veículo</h1>
+<main class="pagina estreita">
+    <!-- O mesmo formulario serve para CADASTRAR (id = 0) e EDITAR (id > 0) -->
+    <h1 th:text="${veiculo.id == 0} ? 'Novo veículo' : 'Editar veículo'">Veículo</h1>
 
-<form method="post" th:object="${veiculo}"
-      th:action="${veiculo.id == 0} ? @{/veiculos/novo} : @{/veiculos/{id}/editar(id=${veiculo.id})}">
+    <form class="cartao" method="post" th:object="${veiculo}"
+          th:action="${veiculo.id == 0} ? @{/veiculos/novo} : @{/veiculos/{id}/editar(id=${veiculo.id})}">
 
-    <label for="placa">Placa *</label>
-    <input type="text" id="placa" th:field="*{placa}" placeholder="ABC1D23">
-    <div class="msg-erro" th:if="${#fields.hasErrors('placa')}" th:errors="*{placa}"></div>
+        <label for="placa">Placa *</label>
+        <input type="text" id="placa" th:field="*{placa}" placeholder="ABC1D23" th:errorclass="campo-erro">
+        <div class="msg-erro" th:if="${#fields.hasErrors('placa')}" th:errors="*{placa}"></div>
 
-    <label for="marca">Marca *</label>
-    <input type="text" id="marca" th:field="*{marca}" placeholder="Fiat">
-    <div class="msg-erro" th:if="${#fields.hasErrors('marca')}" th:errors="*{marca}"></div>
+        <label for="marca">Marca *</label>
+        <input type="text" id="marca" th:field="*{marca}" placeholder="Fiat" th:errorclass="campo-erro">
+        <div class="msg-erro" th:if="${#fields.hasErrors('marca')}" th:errors="*{marca}"></div>
 
-    <label for="modelo">Modelo *</label>
-    <input type="text" id="modelo" th:field="*{modelo}" placeholder="Argo">
-    <div class="msg-erro" th:if="${#fields.hasErrors('modelo')}" th:errors="*{modelo}"></div>
+        <label for="modelo">Modelo *</label>
+        <input type="text" id="modelo" th:field="*{modelo}" placeholder="Argo" th:errorclass="campo-erro">
+        <div class="msg-erro" th:if="${#fields.hasErrors('modelo')}" th:errors="*{modelo}"></div>
 
-    <label for="ano">Ano *</label>
-    <input type="number" id="ano" th:field="*{ano}" placeholder="2022">
-    <div class="msg-erro" th:if="${#fields.hasErrors('ano')}" th:errors="*{ano}"></div>
+        <label for="ano">Ano *</label>
+        <input type="number" id="ano" th:field="*{ano}" placeholder="2022" th:errorclass="campo-erro">
+        <div class="msg-erro" th:if="${#fields.hasErrors('ano')}" th:errors="*{ano}"></div>
 
-    <label for="cor">Cor (opcional)</label>
-    <input type="text" id="cor" th:field="*{cor}" placeholder="Prata">
+        <label for="cor">Cor (opcional)</label>
+        <input type="text" id="cor" th:field="*{cor}" placeholder="Prata" th:errorclass="campo-erro">
 
-    <p>
-        <button type="submit" class="botao">Salvar</button>
-        <a class="botao botao-cinza" th:href="@{/veiculos}">Cancelar</a>
-    </p>
-</form>
-
+        <div class="botoes-form">
+            <button type="submit" class="botao">Salvar</button>
+            <a class="botao botao-cinza" th:href="@{/veiculos}">Cancelar</a>
+        </div>
+    </form>
+</main>
 </body>
 </html>

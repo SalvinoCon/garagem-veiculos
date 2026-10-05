@@ -2,75 +2,60 @@
 <html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Veículos - Garagem de Veículos</title>
-    <style>
-        body { font-family: Arial, sans-serif; max-width: 960px; margin: 30px auto; padding: 0 16px; }
-        nav a { margin-right: 14px; font-weight: bold; color: #1d4ed8; text-decoration: none; }
-        table { width: 100%; border-collapse: collapse; margin-top: 16px; }
-        th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
-        th { background: #f0f0f0; }
-        label { display: block; margin-top: 12px; font-weight: bold; }
-        input, select { padding: 8px; box-sizing: border-box; }
-        .botao { display: inline-block; padding: 6px 12px; background: #1d4ed8; color: #fff; text-decoration: none; border: none; border-radius: 4px; cursor: pointer; font-size: 14px; }
-        .botao-vermelho { background: #b91c1c; }
-        .botao-cinza { background: #6b7280; }
-        .sucesso { background: #dcfce7; color: #166534; padding: 10px; border-radius: 4px; }
-        .erro { background: #fee2e2; color: #991b1b; padding: 10px; border-radius: 4px; }
-        .msg-erro { color: #b91c1c; font-size: 14px; }
-        .disponivel { color: #166534; font-weight: bold; }
-        .reservado { color: #b91c1c; font-weight: bold; }
-        .caixa { border: 1px solid #ccc; border-radius: 6px; padding: 12px 16px; margin-top: 16px; }
-        form.inline { display: inline; }
-    </style>
+    <link rel="stylesheet" th:href="@{/css/app.css}">
 </head>
 <body>
+<div th:replace="~{fragments/layout :: topo('veiculos')}"></div>
 
-<nav>
-    <a th:href="@{/pessoas}">Pessoas</a>
-    <a th:href="@{/veiculos}">Veículos</a>
-</nav>
+<main class="pagina">
+    <div class="cabecalho">
+        <h1>Veículos</h1>
+        <a class="botao" th:href="@{/veiculos/novo}">+ Novo veículo</a>
+    </div>
 
-<h1>Veículos</h1>
+    <!-- Mensagens enviadas pelo Controller (aparecem so se existirem) -->
+    <p class="alerta sucesso" th:if="${mensagem}" th:text="${mensagem}"></p>
+    <p class="alerta erro" th:if="${erro}" th:text="${erro}"></p>
 
-<p class="sucesso" th:if="${mensagem}" th:text="${mensagem}"></p>
-<p class="erro" th:if="${erro}" th:text="${erro}"></p>
-
-<a class="botao" th:href="@{/veiculos/novo}">+ Novo veículo</a>
-
-<table>
-    <thead>
-    <tr>
-        <th>Id</th>
-        <th>Placa</th>
-        <th>Marca</th>
-        <th>Modelo</th>
-        <th>Ano</th>
-        <th>Cor</th>
-        <th>Ações</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:if="${#lists.isEmpty(veiculos)}">
-        <td colspan="7">Nenhum veículo cadastrado.</td>
-    </tr>
-    <tr th:each="v : ${veiculos}">
-        <td th:text="${v.id}"></td>
-        <td th:text="${v.placa}"></td>
-        <td th:text="${v.marca}"></td>
-        <td th:text="${v.modelo}"></td>
-        <td th:text="${v.ano}"></td>
-        <td th:text="${v.cor}"></td>
-        <td>
-            <a class="botao" th:href="@{/veiculos/{id}/editar(id=${v.id})}">Editar</a>
-            <form class="inline" method="post"
-                  th:action="@{/veiculos/{id}/excluir(id=${v.id})}"
-                  onsubmit="return confirm('Tem certeza que deseja excluir este veículo?');">
-                <button type="submit" class="botao botao-vermelho">Excluir</button>
-            </form>
-        </td>
-    </tr>
-    </tbody>
-</table>
-
+    <div class="cartao tabela">
+        <table>
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Placa</th>
+                <th>Marca</th>
+                <th>Modelo</th>
+                <th>Ano</th>
+                <th>Cor</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:if="${#lists.isEmpty(veiculos)}">
+                <td class="vazio" colspan="7">Nenhum veículo cadastrado.</td>
+            </tr>
+            <tr th:each="x : ${veiculos}">
+                <td th:text="${x.id}"></td>
+                <td th:text="${x.placa}"></td>
+                <td th:text="${x.marca}"></td>
+                <td th:text="${x.modelo}"></td>
+                <td th:text="${x.ano}"></td>
+                <td th:text="${x.cor}"></td>
+                <td class="acoes">
+                    <a class="botao botao-cinza botao-pequeno" th:href="@{/veiculos/{id}/editar(id=${x.id})}">Editar</a>
+                    <!-- Confirmacao antes de excluir -->
+                    <form class="inline" method="post"
+                          th:action="@{/veiculos/{id}/excluir(id=${x.id})}"
+                          onsubmit="return confirm('Tem certeza que deseja excluir este veículo?');">
+                        <button type="submit" class="botao botao-vermelho botao-pequeno">Excluir</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
 </body>
 </html>
