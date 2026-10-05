@@ -87,4 +87,5 @@ Na pasta `docs/`:
 | Listagem de Pessoas | `docs/print-pessoas.png` |
 | Formulário de Pessoa | `docs/print-formulario-pessoa.png` |
 | Listagem de Veículos | `docs/print-veiculos.png` |
+| Formulário de Veículo | `docs/print-formulario-veiculo.png` |
 
