@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Pessoas - Garagem de Veículos</title>
+    <title>Veículos - Garagem de Veículos</title>
     <!-- O visual de todas as telas fica em um unico arquivo: static/css/estilo.css -->
     <link rel="stylesheet" th:href="@{/css/estilo.css}">
 </head>
@@ -15,8 +15,8 @@
         <div class="marca">Garagem <span>de Veículos</span></div>
         <nav class="menu">
             <a th:href="@{/}">Reservas</a>
-            <a th:href="@{/pessoas}" class="ativo">Pessoas</a>
-            <a th:href="@{/veiculos}">Veículos</a>
+            <a th:href="@{/pessoas}">Pessoas</a>
+            <a th:href="@{/veiculos}" class="ativo">Veículos</a>
         </nav>
     </div>
 </header>
@@ -25,10 +25,10 @@
 
     <div class="cabecalho">
         <div>
-            <h1>Pessoas</h1>
-            <p class="subtitulo">Quem pode reservar um veículo.</p>
+            <h1>Veículos</h1>
+            <p class="subtitulo">Os carros da garagem.</p>
         </div>
-        <a class="botao" th:href="@{/pessoas/novo}">+ Nova pessoa</a>
+        <a class="botao" th:href="@{/veiculos/novo}">+ Novo veículo</a>
     </div>
 
     <!-- Mensagens enviadas pelo Controller (aparecem so se existirem) -->
@@ -40,31 +40,30 @@
             <thead>
             <tr>
                 <th>Id</th>
-                <th>Nome</th>
-                <th>CPF</th>
-                <th>E-mail</th>
-                <th>Telefone</th>
+                <th>Placa</th>
+                <th>Marca</th>
+                <th>Modelo</th>
+                <th>Ano</th>
+                <th>Cor</th>
                 <th></th>
             </tr>
             </thead>
             <tbody>
-            <!-- Se a lista estiver vazia -->
-            <tr th:if="${#lists.isEmpty(pessoas)}">
-                <td class="vazio" colspan="6">Nenhuma pessoa cadastrada.</td>
+            <tr th:if="${#lists.isEmpty(veiculos)}">
+                <td class="vazio" colspan="7">Nenhum veículo cadastrado.</td>
             </tr>
-            <!-- Uma linha para cada pessoa da lista -->
-            <tr th:each="p : ${pessoas}">
-                <td class="discreto" th:text="${p.id}"></td>
-                <td th:text="${p.nome}"></td>
-                <td th:text="${p.cpf}"></td>
-                <td th:text="${p.email}"></td>
-                <td th:text="${p.telefone}"></td>
+            <tr th:each="v : ${veiculos}">
+                <td class="discreto" th:text="${v.id}"></td>
+                <td class="placa" th:text="${v.placa}"></td>
+                <td th:text="${v.marca}"></td>
+                <td th:text="${v.modelo}"></td>
+                <td th:text="${v.ano}"></td>
+                <td th:text="${v.cor}"></td>
                 <td class="acoes">
-                    <a class="botao pequeno claro" th:href="@{/pessoas/{id}/editar(id=${p.id})}">Editar</a>
-                    <!-- Confirmacao antes de excluir -->
+                    <a class="botao pequeno claro" th:href="@{/veiculos/{id}/editar(id=${v.id})}">Editar</a>
                     <form class="inline" method="post"
-                          th:action="@{/pessoas/{id}/excluir(id=${p.id})}"
-                          onsubmit="return confirm('Tem certeza que deseja excluir esta pessoa?');">
+                          th:action="@{/veiculos/{id}/excluir(id=${v.id})}"
+                          onsubmit="return confirm('Tem certeza que deseja excluir este veículo?');">
                         <button type="submit" class="botao pequeno perigo">Excluir</button>
                     </form>
                 </td>

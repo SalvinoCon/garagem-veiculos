@@ -1,0 +1,180 @@
+/* =========================================================
+   Garagem de Veiculos - estilo unico de todas as telas.
+   (CSS = a "roupa" da pagina: cores, tamanhos, espacamentos.)
+   ========================================================= */
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    font-family: "Segoe UI", Roboto, Arial, sans-serif;
+    font-size: 15px;
+    color: #1f2937;
+    background: #f3f5f9;
+}
+
+/* ---------- Barra do topo ---------- */
+.topo {
+    background: #14213d;
+    color: #fff;
+}
+.topo-conteudo {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.marca {
+    font-size: 18px;
+    font-weight: 700;
+    padding: 16px 0;
+    letter-spacing: .3px;
+}
+.marca span { color: #fca311; }
+.menu a {
+    display: inline-block;
+    padding: 18px 14px;
+    color: #cbd5e1;
+    text-decoration: none;
+    font-weight: 600;
+    border-bottom: 3px solid transparent;
+}
+.menu a:hover { color: #fff; }
+.menu a.ativo { color: #fff; border-bottom-color: #fca311; }
+
+/* ---------- Area principal ---------- */
+.pagina {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 24px 20px 48px;
+}
+.pagina.estreita { max-width: 620px; }
+
+.cabecalho {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+h1 { font-size: 26px; margin: 0; }
+h2 { font-size: 18px; margin: 0 0 14px; }
+.subtitulo { color: #6b7280; margin: 4px 0 0; }
+
+/* ---------- Cartao (caixa branca) ---------- */
+.cartao {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 3px rgba(15, 23, 42, .06);
+}
+
+/* ---------- Tabelas ---------- */
+.tabela-rolagem { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; }
+th {
+    text-align: left;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    color: #6b7280;
+    padding: 10px 12px;
+    border-bottom: 2px solid #e5e7eb;
+    white-space: nowrap;
+}
+td {
+    padding: 12px;
+    border-bottom: 1px solid #eef0f4;
+    vertical-align: middle;
+}
+tbody tr:hover { background: #f8fafc; }
+tbody tr:last-child td { border-bottom: none; }
+td.acoes { white-space: nowrap; text-align: right; }
+td.vazio { text-align: center; color: #6b7280; padding: 24px; }
+
+/* ---------- Formularios ---------- */
+label {
+    display: block;
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 6px;
+}
+input, select {
+    width: 100%;
+    padding: 10px 12px;
+    font: inherit;
+    color: inherit;
+    background: #fff;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+}
+input:focus, select:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, .18);
+}
+.campo { margin-bottom: 16px; }
+.grade {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0 16px;
+}
+.msg-erro { color: #b91c1c; font-size: 13px; margin-top: 5px; }
+.acoes-form { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 4px; }
+form.inline { display: inline; }
+
+/* ---------- Botoes ---------- */
+.botao {
+    display: inline-block;
+    padding: 9px 16px;
+    font: inherit;
+    font-weight: 600;
+    font-size: 14px;
+    color: #fff;
+    background: #2563eb;
+    border: 1px solid #2563eb;
+    border-radius: 8px;
+    text-decoration: none;
+    cursor: pointer;
+}
+.botao:hover { background: #1d4ed8; border-color: #1d4ed8; }
+.botao.pequeno { padding: 6px 11px; font-size: 13px; }
+.botao.claro { background: #fff; color: #1f2937; border-color: #cbd5e1; }
+.botao.claro:hover { background: #f1f5f9; }
+.botao.perigo { background: #fff; color: #b91c1c; border-color: #fca5a5; }
+.botao.perigo:hover { background: #fef2f2; }
+
+/* ---------- Avisos ---------- */
+.aviso {
+    padding: 12px 16px;
+    border-radius: 10px;
+    margin: 0 0 18px;
+    font-weight: 600;
+    border: 1px solid;
+}
+.aviso.sucesso { background: #ecfdf5; color: #065f46; border-color: #a7f3d0; }
+.aviso.erro { background: #fef2f2; color: #991b1b; border-color: #fecaca; }
+
+/* ---------- Etiquetas de status ---------- */
+.etiqueta {
+    display: inline-block;
+    padding: 3px 11px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+}
+.etiqueta.disponivel { background: #dcfce7; color: #166534; }
+.etiqueta.reservado { background: #fee2e2; color: #991b1b; }
+
+.placa {
+    font-family: Consolas, "Courier New", monospace;
+    font-weight: 700;
+    letter-spacing: .5px;
+}
+.discreto { color: #6b7280; }
