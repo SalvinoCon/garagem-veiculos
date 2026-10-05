@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Reservas - Garagem de Veículos</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+<body>
+<div th:replace="~{fragments/layout :: topo('reservas')}"></div>
+
+<main class="pagina">
+    <div class="cabecalho">
+        <h1>Reservas</h1>
+    </div>
+
+    <!-- Mensagens enviadas pelo Controller -->
+    <p class="alerta sucesso" th:if="${mensagem}" th:text="${mensagem}"></p>
+    <p class="alerta erro" th:if="${erro}" th:text="${erro}"></p>
+
+    <!-- ============ EDITAR PERIODO (aparece so quando clicou em Editar) ============ -->
+    <section class="cartao secao" th:if="${reservaEmEdicao}">
+        <h2>Editar período da reserva <span th:text="${reservaEmEdicao.id}"></span></h2>
+        <form method="post" th:action="@{/reservas/{id}/editar(id=${reservaEmEdicao.id})}">
+            <div class="linha-form">
+                <div>
+                    <label for="editInicio">Data de início</label>
+                    <input type="date" id="editInicio" name="dataInicio" th:value="${reservaEmEdicao.dataInicio}" required>
+                </div>
+                <div>
+                    <label for="editFim">Data de fim</label>
+                    <input type="date" id="editFim" name="dataFim" th:value="${reservaEmEdicao.dataFim}" required>
+                </div>
+            </div>
+            <div class="botoes-form">
+                <button type="submit" class="botao">Salvar período</button>
+                <a class="botao botao-cinza" th:href="@{/}">Cancelar</a>
+            </div>
+        </form>
+    </section>
+
+    <!-- ============ NOVA RESERVA ============ -->
+    <section class="cartao secao" th:unless="${reservaEmEdicao}">
+        <h2>Nova reserva</h2>
+        <form method="post" th:action="@{/reservas/novo}">
+            <div class="linha-form">
+                <div>
+                    <label for="veiculoId">Veículo</label>
+                    <select id="veiculoId" name="veiculoId" required>
+                        <option value="">Selecione...</option>
+                        <option th:each="v : ${veiculos}" th:value="${v.id}"
+                                th:text="${v.placa + ' - ' + v.modelo}"></option>
+                    </select>
+                </div>
+                <div>
+                    <label for="pessoaId">Pessoa</label>
+                    <select id="pessoaId" name="pessoaId" required>
+                        <option value="">Selecione...</option>
+                        <option th:each="p : ${pessoas}" th:value="${p.id}" th:text="${p.nome}"></option>
+                    </select>
+                </div>
+                <div>
+                    <label for="dataInicio">Data de início</label>
+                    <input type="date" id="dataInicio" name="dataInicio" required>
+                </div>
+                <div>
+                    <label for="dataFim">Data de fim</label>
+                    <input type="date" id="dataFim" name="dataFim" required>
+                </div>
+            </div>
+            <div class="botoes-form">
+                <button type="submit" class="botao">Reservar</button>
+            </div>
+        </form>
+    </section>
+
+    <!-- ============ LISTA DE RESERVAS ============ -->
+    <h2 class="titulo-secao">Reservas cadastradas</h2>
+    <div class="cartao tabela">
+        <table>
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Veículo (placa - modelo)</th>
+                <th>Pessoa</th>
+                <th>Período</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:if="${#lists.isEmpty(linhasReservas)}">
+                <td class="vazio" colspan="5">Nenhuma reserva cadastrada.</td>
+            </tr>
+            <tr th:each="l : ${linhasReservas}">
+                <td th:text="${l.reserva.id}"></td>
+                <td th:text="${l.veiculo}"></td>
+                <td th:text="${l.pessoa}"></td>
+                <td th:text="${#temporals.format(l.reserva.dataInicio, 'dd/MM/yyyy') + ' a ' + #temporals.format(l.reserva.dataFim, 'dd/MM/yyyy')}"></td>
+                <td class="acoes">
+                    <a class="botao botao-cinza botao-pequeno" th:href="@{/reservas/{id}/editar(id=${l.reserva.id})}">Editar período</a>
+                    <form class="inline" method="post"
+                          th:action="@{/reservas/{id}/excluir(id=${l.reserva.id})}"
+                          onsubmit="return confirm('Tem certeza que deseja cancelar esta reserva?');">
+                        <button type="submit" class="botao botao-vermelho botao-pequeno">Cancelar</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- ============ STATUS DOS VEICULOS HOJE ============ -->
+    <h2 class="titulo-secao">Veículos hoje (<span th:text="${#temporals.format(hoje, 'dd/MM/yyyy')}"></span>)</h2>
+    <div class="cartao tabela">
+        <table>
+            <thead>
+            <tr>
+                <th>Placa</th>
+                <th>Marca</th>
+                <th>Modelo</th>
+                <th>Status</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:if="${#lists.isEmpty(linhasVeiculos)}">
+                <td class="vazio" colspan="4">Nenhum veículo cadastrado.</td>
+            </tr>
+            <tr th:each="l : ${linhasVeiculos}">
+                <td th:text="${l.veiculo.placa}"></td>
+                <td th:text="${l.veiculo.marca}"></td>
+                <td th:text="${l.veiculo.modelo}"></td>
+                <td>
+                    <span class="reservado" th:if="${l.reservado}">● Reservado</span>
+                    <span class="disponivel" th:unless="${l.reservado}">● Disponível</span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+</body>
+</html>

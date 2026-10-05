@@ -57,3 +57,8 @@ input:focus, select:focus { outline: none; border-color: var(--primaria); box-sh
 .disponivel { color: #065f46; font-weight: 600; }
 .reservado { color: var(--perigo-escuro); font-weight: 600; }
 @media (max-width: 600px) { .cabecalho h1 { font-size: 22px; } th, td { padding: 10px; } }
+
+.secao { margin-bottom: 24px; }
+.secao h2 { margin: 0 0 4px; font-size: 18px; }
+.titulo-secao { font-size: 18px; margin: 28px 0 12px; }
+.linha-form { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0 16px; }

@@ -60,6 +60,21 @@ Depois abra no navegador: http://localhost:8080/pessoas
 Arquivos: `model/Veiculo.java`, `repository/IVeiculoRepository.java`, `repository/VeiculoRepository.java`,
 `controller/VeiculoController.java`, `templates/veiculo/VeiculoForm.html` e `index.html`. Dados em `data/veiculos.json`.
 
+## Reservas (página inicial)
+Vincula um veículo a uma pessoa por um período. Ao abrir o sistema (`http://localhost:8080/`) o usuário cai em Reservas.
+
+| Operação | Rota |
+|---|---|
+| Listar / página inicial | GET / |
+| Criar | POST /reservas/novo |
+| Editar período | GET e POST /reservas/{id}/editar |
+| Cancelar | POST /reservas/{id}/excluir (com confirmação) |
+
+- Veículo e pessoa são escolhidos em listas carregadas dos repositórios.
+- Regra de conflito (`IReservaRepository.existeConflito`): um veículo não pode ter reservas com períodos que se sobrepõem; a data de fim não pode ser anterior à de início.
+- Cada veículo aparece como Disponível ou Reservado na data de hoje, calculado a partir das reservas.
+- Dados em `data/reservas.json`.
+
 ## Ferramentas de IA usadas
 - Claude (Anthropic)
 
