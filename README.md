@@ -79,4 +79,12 @@ Vincula um veículo a uma pessoa por um período. Ao abrir o sistema (`http://lo
 - Claude (Anthropic)
 
 ## Prints
-Ver a pasta `docs/`.
+Na pasta `docs/`:
+
+| Tela | Arquivo |
+|---|---|
+| Página inicial (Reservas) | `docs/print-reservas.png` |
+| Listagem de Pessoas | `docs/print-pessoas.png` |
+| Formulário de Pessoa | `docs/print-formulario-pessoa.png` |
+| Listagem de Veículos | `docs/print-veiculos.png` |
+
