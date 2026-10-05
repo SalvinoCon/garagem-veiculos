@@ -1,0 +1,22 @@
+[ {
+  "id" : 1,
+  "placa" : "ABC1D23",
+  "marca" : "Fiat",
+  "modelo" : "Argo",
+  "ano" : 2022,
+  "cor" : "Prata"
+}, {
+  "id" : 2,
+  "placa" : "DEF4G56",
+  "marca" : "Chevrolet",
+  "modelo" : "Onix",
+  "ano" : 2021,
+  "cor" : "Branco"
+}, {
+  "id" : 3,
+  "placa" : "GHI7J89",
+  "marca" : "Volkswagen",
+  "modelo" : "Gol",
+  "ano" : 2019,
+  "cor" : ""
+} ]

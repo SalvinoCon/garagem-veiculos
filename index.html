@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Pessoas - Garagem de Veículos</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 960px; margin: 30px auto; padding: 0 16px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 16px; }
+        th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+        th { background: #f0f0f0; }
+        .botao { display: inline-block; padding: 6px 12px; background: #1d4ed8; color: #fff; text-decoration: none; border: none; border-radius: 4px; cursor: pointer; font-size: 14px; }
+        .botao-vermelho { background: #b91c1c; }
+        .sucesso { background: #dcfce7; color: #166534; padding: 10px; border-radius: 4px; }
+        .erro { background: #fee2e2; color: #991b1b; padding: 10px; border-radius: 4px; }
+        form.inline { display: inline; }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a th:href="@{/}">Reservas</a> |
+    <a th:href="@{/pessoas}">Pessoas</a> |
+    <a th:href="@{/veiculos}">Veículos</a>
+</nav>
+
+<h1>Pessoas</h1>
+
+<!-- Mensagens enviadas pelo Controller (aparecem so se existirem) -->
+<p class="sucesso" th:if="${mensagem}" th:text="${mensagem}"></p>
+<p class="erro" th:if="${erro}" th:text="${erro}"></p>
+
+<a class="botao" th:href="@{/pessoas/novo}">+ Nova pessoa</a>
+
+<table>
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Nome</th>
+        <th>CPF</th>
+        <th>E-mail</th>
+        <th>Telefone</th>
+        <th>Ações</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Se a lista estiver vazia -->
+    <tr th:if="${#lists.isEmpty(pessoas)}">
+        <td colspan="6">Nenhuma pessoa cadastrada.</td>
+    </tr>
+    <!-- Uma linha para cada pessoa da lista -->
+    <tr th:each="p : ${pessoas}">
+        <td th:text="${p.id}"></td>
+        <td th:text="${p.nome}"></td>
+        <td th:text="${p.cpf}"></td>
+        <td th:text="${p.email}"></td>
+        <td th:text="${p.telefone}"></td>
+        <td>
+            <a class="botao" th:href="@{/pessoas/{id}/editar(id=${p.id})}">Editar</a>
+            <!-- Confirmacao antes de excluir -->
+            <form class="inline" method="post"
+                  th:action="@{/pessoas/{id}/excluir(id=${p.id})}"
+                  onsubmit="return confirm('Tem certeza que deseja excluir esta pessoa?');">
+                <button type="submit" class="botao botao-vermelho">Excluir</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
