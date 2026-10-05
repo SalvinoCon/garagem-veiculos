@@ -19,4 +19,11 @@
   "modelo" : "Gol",
   "ano" : 2019,
   "cor" : ""
+}, {
+  "id" : 4,
+  "placa" : "KU4V40",
+  "marca" : "Fiat",
+  "modelo" : "Argo",
+  "ano" : 2025,
+  "cor" : "preto radioativo"
 } ]

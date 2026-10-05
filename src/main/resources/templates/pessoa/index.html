@@ -12,10 +12,16 @@
         .botao-vermelho { background: #b91c1c; }
         .sucesso { background: #dcfce7; color: #166534; padding: 10px; border-radius: 4px; }
         .erro { background: #fee2e2; color: #991b1b; padding: 10px; border-radius: 4px; }
+        nav a { margin-right: 14px; font-weight: bold; color: #1d4ed8; text-decoration: none; }
         form.inline { display: inline; }
     </style>
 </head>
 <body>
+
+<nav>
+    <a th:href="@{/pessoas}">Pessoas</a>
+    <a th:href="@{/veiculos}">Veículos</a>
+</nav>
 
 <h1>Pessoas</h1>
 

@@ -49,6 +49,17 @@ Depois abra no navegador: http://localhost:8080/pessoas
 | Editar | GET e POST /pessoas/{id}/editar |
 | Excluir | POST /pessoas/{id}/excluir (com confirmação) |
 
+## Rotas (Entrega 2 — Veículos)
+| Operação | Rota |
+|---|---|
+| Listar | GET /veiculos |
+| Cadastrar | GET e POST /veiculos/novo |
+| Editar | GET e POST /veiculos/{id}/editar |
+| Excluir | POST /veiculos/{id}/excluir (com confirmação) |
+
+Arquivos: `model/Veiculo.java`, `repository/IVeiculoRepository.java`, `repository/VeiculoRepository.java`,
+`controller/VeiculoController.java`, `templates/veiculo/VeiculoForm.html` e `index.html`. Dados em `data/veiculos.json`.
+
 ## Ferramentas de IA usadas
 - Claude (Anthropic)
 
