@@ -63,7 +63,6 @@ public class ReservaController {
         String erro = validar(reserva, 0);
         if (erro != null) {
             redirect.addFlashAttribute("erro", erro);
-            redirect.addFlashAttribute("digitado", reserva); // devolve o que foi digitado para a tela
             return "redirect:/";
         }
         reservas.adicionar(reserva);

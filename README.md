@@ -72,7 +72,7 @@ Caminho dos dados: **View → Controller → Interface → Repositório → arqu
 | Editar | GET e POST /pessoas/{id}/editar |
 | Excluir | POST /pessoas/{id}/excluir (com confirmação) |
 
-### Veículos
+## Rotas (Entrega 2 — Veículos)
 | Operação | Rota |
 |---|---|
 | Listar | GET /veiculos |
@@ -80,30 +80,35 @@ Caminho dos dados: **View → Controller → Interface → Repositório → arqu
 | Editar | GET e POST /veiculos/{id}/editar |
 | Excluir | POST /veiculos/{id}/excluir (com confirmação) |
 
-## Regra de negócio: conflito de reservas
-Um veículo não pode ter duas reservas com períodos que se sobrepõem. Há conflito quando:
+Arquivos: `model/Veiculo.java`, `repository/IVeiculoRepository.java`, `repository/VeiculoRepository.java`,
+`controller/VeiculoController.java`, `templates/veiculo/VeiculoForm.html` e `index.html`. Dados em `data/veiculos.json`.
 
-```
-novaInicio <= existenteFim  E  novaFim >= existenteInicio
-```
+## Reservas (página inicial)
+Vincula um veículo a uma pessoa por um período. Ao abrir o sistema (`http://localhost:8080/`) o usuário cai em Reservas.
 
-A verificação fica **fora do Controller**, no método `existeConflito(veiculoId, inicio, fim, idIgnorado)`
-do `IReservaRepository`. Ao editar, a reserva ignora o próprio Id. O status "Disponível / Reservado"
-de cada veículo é calculado a partir das reservas na data de hoje.
+| Operação | Rota |
+|---|---|
+| Listar / página inicial | GET / |
+| Criar | POST /reservas/novo |
+| Editar período | GET e POST /reservas/{id}/editar |
+| Cancelar | POST /reservas/{id}/excluir (com confirmação) |
+
+- Veículo e pessoa são escolhidos em listas carregadas dos repositórios.
+- Regra de conflito (`IReservaRepository.existeConflito`): um veículo não pode ter reservas com períodos que se sobrepõem; a data de fim não pode ser anterior à de início.
+- Cada veículo aparece como Disponível ou Reservado na data de hoje, calculado a partir das reservas.
+- Dados em `data/reservas.json`.
 
 ## Ferramentas de IA usadas
 - Claude (Anthropic)
 
 ## Prints
+Na pasta `docs/`:
 
-### Entrega 1 — Pessoas
-![Listagem de Pessoas](docs/Captura%20de%20tela%202026-09-28%20200232.png)
+| Tela | Arquivo |
+|---|---|
+| Página inicial (Reservas) | `docs/print-reservas.png` |
+| Listagem de Pessoas | `docs/print-pessoas.png` |
+| Formulário de Pessoa | `docs/print-formulario-pessoa.png` |
+| Listagem de Veículos | `docs/print-veiculos.png` |
+| Formulário de Veículo | `docs/print-formulario-veiculo.png` |
 
-### Entrega 2 — Reservas
-Página de Reservas:
-
-![Página de Reservas](docs/Captura%20de%20tela%202026-10-05%20190314.png)
-
-Tentativa de reserva em conflito sendo bloqueada:
-
-![Reserva em conflito bloqueada](docs/Captura%20de%20tela%202026-10-05%20190417.png)

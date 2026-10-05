@@ -4,73 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Veículo - Garagem de Veículos</title>
-    <!-- O visual de todas as telas fica em um unico arquivo: static/css/estilo.css -->
-    <link rel="stylesheet" th:href="@{/css/estilo.css}">
+    <link rel="stylesheet" th:href="@{/css/app.css}">
 </head>
 <body>
-
-<!-- Barra do topo com o menu -->
-<header class="topo">
-    <div class="topo-conteudo">
-        <div class="marca">Garagem <span>de Veículos</span></div>
-        <nav class="menu">
-            <a th:href="@{/}">Reservas</a>
-            <a th:href="@{/pessoas}">Pessoas</a>
-            <a th:href="@{/veiculos}" class="ativo">Veículos</a>
-        </nav>
-    </div>
-</header>
+<div th:replace="~{fragments/layout :: topo('veiculos')}"></div>
 
 <main class="pagina estreita">
-
     <!-- O mesmo formulario serve para CADASTRAR (id = 0) e EDITAR (id > 0) -->
-    <div class="cabecalho">
-        <h1 th:text="${veiculo.id == 0} ? 'Novo veículo' : 'Editar veículo'">Veículo</h1>
-    </div>
+    <h1 th:text="${veiculo.id == 0} ? 'Novo veículo' : 'Editar veículo'">Veículo</h1>
 
     <form class="cartao" method="post" th:object="${veiculo}"
           th:action="${veiculo.id == 0} ? @{/veiculos/novo} : @{/veiculos/{id}/editar(id=${veiculo.id})}">
 
-        <div class="campo">
-            <label for="placa">Placa *</label>
-            <input type="text" id="placa" th:field="*{placa}" placeholder="ABC1D23">
-            <div class="msg-erro" th:if="${#fields.hasErrors('placa')}" th:errors="*{placa}"></div>
-        </div>
+        <label for="placa">Placa *</label>
+        <input type="text" id="placa" th:field="*{placa}" placeholder="ABC1D23" th:errorclass="campo-erro">
+        <div class="msg-erro" th:if="${#fields.hasErrors('placa')}" th:errors="*{placa}"></div>
 
-        <div class="grade">
-            <div class="campo">
-                <label for="marca">Marca *</label>
-                <input type="text" id="marca" th:field="*{marca}" placeholder="Fiat">
-                <div class="msg-erro" th:if="${#fields.hasErrors('marca')}" th:errors="*{marca}"></div>
-            </div>
+        <label for="marca">Marca *</label>
+        <input type="text" id="marca" th:field="*{marca}" placeholder="Fiat" th:errorclass="campo-erro">
+        <div class="msg-erro" th:if="${#fields.hasErrors('marca')}" th:errors="*{marca}"></div>
 
-            <div class="campo">
-                <label for="modelo">Modelo *</label>
-                <input type="text" id="modelo" th:field="*{modelo}" placeholder="Argo">
-                <div class="msg-erro" th:if="${#fields.hasErrors('modelo')}" th:errors="*{modelo}"></div>
-            </div>
-        </div>
+        <label for="modelo">Modelo *</label>
+        <input type="text" id="modelo" th:field="*{modelo}" placeholder="Argo" th:errorclass="campo-erro">
+        <div class="msg-erro" th:if="${#fields.hasErrors('modelo')}" th:errors="*{modelo}"></div>
 
-        <div class="grade">
-            <div class="campo">
-                <label for="ano">Ano *</label>
-                <input type="number" id="ano" th:field="*{ano}" placeholder="2022">
-                <div class="msg-erro" th:if="${#fields.hasErrors('ano')}" th:errors="*{ano}"></div>
-            </div>
+        <label for="ano">Ano *</label>
+        <input type="number" id="ano" th:field="*{ano}" placeholder="2022" th:errorclass="campo-erro">
+        <div class="msg-erro" th:if="${#fields.hasErrors('ano')}" th:errors="*{ano}"></div>
 
-            <div class="campo">
-                <label for="cor">Cor (opcional)</label>
-                <input type="text" id="cor" th:field="*{cor}" placeholder="Prata">
-            </div>
-        </div>
+        <label for="cor">Cor (opcional)</label>
+        <input type="text" id="cor" th:field="*{cor}" placeholder="Prata" th:errorclass="campo-erro">
 
-        <div class="acoes-form">
+        <div class="botoes-form">
             <button type="submit" class="botao">Salvar</button>
-            <a class="botao claro" th:href="@{/veiculos}">Cancelar</a>
+            <a class="botao botao-cinza" th:href="@{/veiculos}">Cancelar</a>
         </div>
     </form>
-
 </main>
-
 </body>
 </html>

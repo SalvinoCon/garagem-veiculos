@@ -4,104 +4,83 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Reservas - Garagem de Veículos</title>
-    <!-- O visual de todas as telas fica em um unico arquivo: static/css/estilo.css -->
-    <link rel="stylesheet" th:href="@{/css/estilo.css}">
+    <link rel="stylesheet" th:href="@{/css/app.css}">
 </head>
 <body>
-
-<!-- Barra do topo com o menu -->
-<header class="topo">
-    <div class="topo-conteudo">
-        <div class="marca">Garagem <span>de Veículos</span></div>
-        <nav class="menu">
-            <a th:href="@{/}" class="ativo">Reservas</a>
-            <a th:href="@{/pessoas}">Pessoas</a>
-            <a th:href="@{/veiculos}">Veículos</a>
-        </nav>
-    </div>
-</header>
+<div th:replace="~{fragments/layout :: topo('reservas')}"></div>
 
 <main class="pagina">
-
     <div class="cabecalho">
-        <div>
-            <h1>Reservas</h1>
-            <p class="subtitulo">Reserve um veículo para uma pessoa por um período.</p>
-        </div>
+        <h1>Reservas</h1>
     </div>
 
-    <!-- Mensagens enviadas pelo Controller (aparecem so se existirem) -->
-    <p class="aviso sucesso" th:if="${mensagem}" th:text="${mensagem}"></p>
-    <p class="aviso erro" th:if="${erro}" th:text="${erro}"></p>
+    <!-- Mensagens enviadas pelo Controller -->
+    <p class="alerta sucesso" th:if="${mensagem}" th:text="${mensagem}"></p>
+    <p class="alerta erro" th:if="${erro}" th:text="${erro}"></p>
 
-    <!-- ============ EDITAR PERIODO (aparece so quando clicou em "Editar periodo") ============ -->
-    <div class="cartao" th:if="${reservaEmEdicao}">
-        <h2>Editar período da reserva nº <span th:text="${reservaEmEdicao.id}"></span></h2>
+    <!-- ============ EDITAR PERIODO (aparece so quando clicou em Editar) ============ -->
+    <section class="cartao secao" th:if="${reservaEmEdicao}">
+        <h2>Editar período da reserva <span th:text="${reservaEmEdicao.id}"></span></h2>
         <form method="post" th:action="@{/reservas/{id}/editar(id=${reservaEmEdicao.id})}">
-            <div class="grade">
-                <div class="campo">
+            <div class="linha-form">
+                <div>
                     <label for="editInicio">Data de início</label>
                     <input type="date" id="editInicio" name="dataInicio" th:value="${reservaEmEdicao.dataInicio}" required>
                 </div>
-                <div class="campo">
+                <div>
                     <label for="editFim">Data de fim</label>
                     <input type="date" id="editFim" name="dataFim" th:value="${reservaEmEdicao.dataFim}" required>
                 </div>
             </div>
-            <div class="acoes-form">
+            <div class="botoes-form">
                 <button type="submit" class="botao">Salvar período</button>
-                <a class="botao claro" th:href="@{/}">Voltar</a>
+                <a class="botao botao-cinza" th:href="@{/}">Cancelar</a>
             </div>
         </form>
-    </div>
+    </section>
 
     <!-- ============ NOVA RESERVA ============ -->
-    <!-- "digitado" guarda o que foi digitado quando deu erro, para nao precisar digitar tudo de novo -->
-    <div class="cartao" th:unless="${reservaEmEdicao}">
+    <section class="cartao secao" th:unless="${reservaEmEdicao}">
         <h2>Nova reserva</h2>
         <form method="post" th:action="@{/reservas/novo}">
-            <div class="grade">
-                <div class="campo">
+            <div class="linha-form">
+                <div>
                     <label for="veiculoId">Veículo</label>
-                    <!-- Lista carregada do repositorio de veiculos -->
                     <select id="veiculoId" name="veiculoId" required>
                         <option value="">Selecione...</option>
                         <option th:each="v : ${veiculos}" th:value="${v.id}"
-                                th:text="${v.placa + ' - ' + v.modelo}"
-                                th:selected="${digitado != null and digitado.veiculoId == v.id}"></option>
+                                th:text="${v.placa + ' - ' + v.modelo}"></option>
                     </select>
                 </div>
-                <div class="campo">
+                <div>
                     <label for="pessoaId">Pessoa</label>
-                    <!-- Lista carregada do repositorio de pessoas -->
                     <select id="pessoaId" name="pessoaId" required>
                         <option value="">Selecione...</option>
-                        <option th:each="p : ${pessoas}" th:value="${p.id}" th:text="${p.nome}"
-                                th:selected="${digitado != null and digitado.pessoaId == p.id}"></option>
+                        <option th:each="p : ${pessoas}" th:value="${p.id}" th:text="${p.nome}"></option>
                     </select>
                 </div>
-                <div class="campo">
+                <div>
                     <label for="dataInicio">Data de início</label>
-                    <input type="date" id="dataInicio" name="dataInicio" th:value="${digitado?.dataInicio}" required>
+                    <input type="date" id="dataInicio" name="dataInicio" required>
                 </div>
-                <div class="campo">
+                <div>
                     <label for="dataFim">Data de fim</label>
-                    <input type="date" id="dataFim" name="dataFim" th:value="${digitado?.dataFim}" required>
+                    <input type="date" id="dataFim" name="dataFim" required>
                 </div>
             </div>
-            <div class="acoes-form">
+            <div class="botoes-form">
                 <button type="submit" class="botao">Reservar</button>
             </div>
         </form>
-    </div>
+    </section>
 
     <!-- ============ LISTA DE RESERVAS ============ -->
-    <div class="cartao tabela-rolagem">
-        <h2>Reservas cadastradas</h2>
+    <h2 class="titulo-secao">Reservas cadastradas</h2>
+    <div class="cartao tabela">
         <table>
             <thead>
             <tr>
-                <th>Nº</th>
+                <th>Id</th>
                 <th>Veículo (placa - modelo)</th>
                 <th>Pessoa</th>
                 <th>Período</th>
@@ -113,16 +92,16 @@
                 <td class="vazio" colspan="5">Nenhuma reserva cadastrada.</td>
             </tr>
             <tr th:each="l : ${linhasReservas}">
-                <td class="discreto" th:text="${l.reserva.id}"></td>
+                <td th:text="${l.reserva.id}"></td>
                 <td th:text="${l.veiculo}"></td>
                 <td th:text="${l.pessoa}"></td>
                 <td th:text="${#temporals.format(l.reserva.dataInicio, 'dd/MM/yyyy') + ' a ' + #temporals.format(l.reserva.dataFim, 'dd/MM/yyyy')}"></td>
                 <td class="acoes">
-                    <a class="botao pequeno claro" th:href="@{/reservas/{id}/editar(id=${l.reserva.id})}">Editar período</a>
+                    <a class="botao botao-cinza botao-pequeno" th:href="@{/reservas/{id}/editar(id=${l.reserva.id})}">Editar período</a>
                     <form class="inline" method="post"
                           th:action="@{/reservas/{id}/excluir(id=${l.reserva.id})}"
                           onsubmit="return confirm('Tem certeza que deseja cancelar esta reserva?');">
-                        <button type="submit" class="botao pequeno perigo">Cancelar reserva</button>
+                        <button type="submit" class="botao botao-vermelho botao-pequeno">Cancelar</button>
                     </form>
                 </td>
             </tr>
@@ -131,8 +110,8 @@
     </div>
 
     <!-- ============ STATUS DOS VEICULOS HOJE ============ -->
-    <div class="cartao tabela-rolagem">
-        <h2>Veículos hoje <span class="discreto" th:text="${'(' + #temporals.format(hoje, 'dd/MM/yyyy') + ')'}"></span></h2>
+    <h2 class="titulo-secao">Veículos hoje (<span th:text="${#temporals.format(hoje, 'dd/MM/yyyy')}"></span>)</h2>
+    <div class="cartao tabela">
         <table>
             <thead>
             <tr>
@@ -147,19 +126,17 @@
                 <td class="vazio" colspan="4">Nenhum veículo cadastrado.</td>
             </tr>
             <tr th:each="l : ${linhasVeiculos}">
-                <td class="placa" th:text="${l.veiculo.placa}"></td>
+                <td th:text="${l.veiculo.placa}"></td>
                 <td th:text="${l.veiculo.marca}"></td>
                 <td th:text="${l.veiculo.modelo}"></td>
                 <td>
-                    <span class="etiqueta reservado" th:if="${l.reservado}">Reservado</span>
-                    <span class="etiqueta disponivel" th:unless="${l.reservado}">Disponível</span>
+                    <span class="reservado" th:if="${l.reservado}">● Reservado</span>
+                    <span class="disponivel" th:unless="${l.reservado}">● Disponível</span>
                 </td>
             </tr>
             </tbody>
         </table>
     </div>
-
 </main>
-
 </body>
 </html>

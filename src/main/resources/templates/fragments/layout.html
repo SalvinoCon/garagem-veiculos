@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<body>
+<!-- Menu reutilizado por todas as telas. Parametro: pagina ativa (reservas, pessoas, veiculos) -->
+<header class="topo" th:fragment="topo(ativa)">
+    <div class="topo-conteudo">
+        <span class="marca">🚗 Garagem de Veículos</span>
+        <nav class="menu">
+            <a th:href="@{/}" th:classappend="${ativa == 'reservas'} ? 'ativo'">Reservas</a>
+            <a th:href="@{/pessoas}" th:classappend="${ativa == 'pessoas'} ? 'ativo'">Pessoas</a>
+            <a th:href="@{/veiculos}" th:classappend="${ativa == 'veiculos'} ? 'ativo'">Veículos</a>
+        </nav>
+    </div>
+</header>
+</body>
+</html>
