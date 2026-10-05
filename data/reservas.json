@@ -10,4 +10,10 @@
   "pessoaId" : 2,
   "dataInicio" : "2026-10-03",
   "dataFim" : "2026-10-08"
+}, {
+  "id" : 3,
+  "veiculoId" : 3,
+  "pessoaId" : 3,
+  "dataInicio" : "2026-10-08",
+  "dataFim" : "2026-10-22"
 } ]

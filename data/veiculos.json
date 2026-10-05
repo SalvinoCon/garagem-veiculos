@@ -1,29 +1,402 @@
-[ {
-  "id" : 1,
-  "placa" : "ABC1D23",
-  "marca" : "Fiat",
-  "modelo" : "Argo",
-  "ano" : 2022,
-  "cor" : "Prata"
-}, {
-  "id" : 2,
-  "placa" : "DEF4G56",
-  "marca" : "Chevrolet",
-  "modelo" : "Onix",
-  "ano" : 2021,
-  "cor" : "Branco"
-}, {
-  "id" : 3,
-  "placa" : "GHI7J89",
-  "marca" : "Volkswagen",
-  "modelo" : "Gol",
-  "ano" : 2019,
-  "cor" : ""
-}, {
-  "id" : 4,
-  "placa" : "KU4V40",
-  "marca" : "Fiat",
-  "modelo" : "Argo",
-  "ano" : 2025,
-  "cor" : "preto radioativo"
-} ]
+[
+  {
+    "id": 1,
+    "placa": "YUB0H30",
+    "marca": "Nissan",
+    "modelo": "Kicks",
+    "ano": 2015,
+    "cor": "Prata"
+  },
+  {
+    "id": 2,
+    "placa": "PVD9G74",
+    "marca": "Honda",
+    "modelo": "Fit",
+    "ano": 2021,
+    "cor": "Preto"
+  },
+  {
+    "id": 3,
+    "placa": "YFJ1S04",
+    "marca": "Nissan",
+    "modelo": "Versa",
+    "ano": 2018,
+    "cor": "Cinza"
+  },
+  {
+    "id": 4,
+    "placa": "CSW3D49",
+    "marca": "Chevrolet",
+    "modelo": "S10",
+    "ano": 2024,
+    "cor": "Branco"
+  },
+  {
+    "id": 5,
+    "placa": "LRN5C85",
+    "marca": "Fiat",
+    "modelo": "Toro",
+    "ano": 2025,
+    "cor": "Marrom"
+  },
+  {
+    "id": 6,
+    "placa": "DNL7W26",
+    "marca": "Volkswagen",
+    "modelo": "Nivus",
+    "ano": 2020,
+    "cor": "Vermelho"
+  },
+  {
+    "id": 7,
+    "placa": "TZR7O69",
+    "marca": "Toyota",
+    "modelo": "Yaris",
+    "ano": 2025,
+    "cor": "Cinza"
+  },
+  {
+    "id": 8,
+    "placa": "CIO3Y79",
+    "marca": "Nissan",
+    "modelo": "Versa",
+    "ano": 2017,
+    "cor": "Branco"
+  },
+  {
+    "id": 9,
+    "placa": "PKF7G54",
+    "marca": "Honda",
+    "modelo": "HR-V",
+    "ano": 2021,
+    "cor": "Vermelho"
+  },
+  {
+    "id": 10,
+    "placa": "RAQ3C36",
+    "marca": "Renault",
+    "modelo": "Sandero",
+    "ano": 2023,
+    "cor": "Marrom"
+  },
+  {
+    "id": 11,
+    "placa": "UWP7Z01",
+    "marca": "Toyota",
+    "modelo": "Hilux",
+    "ano": 2018,
+    "cor": "Cinza"
+  },
+  {
+    "id": 12,
+    "placa": "JVS5P88",
+    "marca": "Honda",
+    "modelo": "City",
+    "ano": 2023,
+    "cor": "Azul"
+  },
+  {
+    "id": 13,
+    "placa": "LWO4J43",
+    "marca": "Chevrolet",
+    "modelo": "Spin",
+    "ano": 2015,
+    "cor": "Azul"
+  },
+  {
+    "id": 14,
+    "placa": "DXR2G37",
+    "marca": "Toyota",
+    "modelo": "Yaris",
+    "ano": 2013,
+    "cor": "Cinza"
+  },
+  {
+    "id": 15,
+    "placa": "JHL2J08",
+    "marca": "Volkswagen",
+    "modelo": "Virtus",
+    "ano": 2012,
+    "cor": "Branco"
+  },
+  {
+    "id": 16,
+    "placa": "RJW2U71",
+    "marca": "Fiat",
+    "modelo": "Strada",
+    "ano": 2016,
+    "cor": "Marrom"
+  },
+  {
+    "id": 17,
+    "placa": "POK2B47",
+    "marca": "Chevrolet",
+    "modelo": "Onix",
+    "ano": 2018,
+    "cor": "Marrom"
+  },
+  {
+    "id": 18,
+    "placa": "CSU0E29",
+    "marca": "Toyota",
+    "modelo": "Corolla",
+    "ano": 2015,
+    "cor": "Preto"
+  },
+  {
+    "id": 19,
+    "placa": "RYN9T93",
+    "marca": "Jeep",
+    "modelo": "Compass",
+    "ano": 2019,
+    "cor": "Marrom"
+  },
+  {
+    "id": 20,
+    "placa": "JSN4S90",
+    "marca": "Nissan",
+    "modelo": "Kicks",
+    "ano": 2024,
+    "cor": "Cinza"
+  },
+  {
+    "id": 21,
+    "placa": "UGI1F32",
+    "marca": "Jeep",
+    "modelo": "Renegade",
+    "ano": 2014,
+    "cor": "Branco"
+  },
+  {
+    "id": 22,
+    "placa": "NOW9P40",
+    "marca": "Ford",
+    "modelo": "EcoSport",
+    "ano": 2023,
+    "cor": "Vermelho"
+  },
+  {
+    "id": 23,
+    "placa": "WOC3I93",
+    "marca": "Hyundai",
+    "modelo": "HB20",
+    "ano": 2020,
+    "cor": "Cinza"
+  },
+  {
+    "id": 24,
+    "placa": "UEI2C02",
+    "marca": "Toyota",
+    "modelo": "Yaris",
+    "ano": 2019,
+    "cor": "Preto"
+  },
+  {
+    "id": 25,
+    "placa": "OWJ6I88",
+    "marca": "Renault",
+    "modelo": "Logan",
+    "ano": 2013,
+    "cor": "Branco"
+  },
+  {
+    "id": 26,
+    "placa": "NXK9I01",
+    "marca": "Ford",
+    "modelo": "Ka",
+    "ano": 2024,
+    "cor": "Vermelho"
+  },
+  {
+    "id": 27,
+    "placa": "SBY2P87",
+    "marca": "Toyota",
+    "modelo": "Hilux",
+    "ano": 2021,
+    "cor": "Verde"
+  },
+  {
+    "id": 28,
+    "placa": "UPC7L65",
+    "marca": "Honda",
+    "modelo": "Civic",
+    "ano": 2025,
+    "cor": "Prata"
+  },
+  {
+    "id": 29,
+    "placa": "KNW7J68",
+    "marca": "Fiat",
+    "modelo": "Toro",
+    "ano": 2013,
+    "cor": "Azul"
+  },
+  {
+    "id": 30,
+    "placa": "IKD6Q08",
+    "marca": "Renault",
+    "modelo": "Logan",
+    "ano": 2012,
+    "cor": "Cinza"
+  },
+  {
+    "id": 31,
+    "placa": "QLT7U70",
+    "marca": "Ford",
+    "modelo": "EcoSport",
+    "ano": 2020,
+    "cor": "Prata"
+  },
+  {
+    "id": 32,
+    "placa": "JOW7D09",
+    "marca": "Ford",
+    "modelo": "Fiesta",
+    "ano": 2016,
+    "cor": "Branco"
+  },
+  {
+    "id": 33,
+    "placa": "RNC3D71",
+    "marca": "Volkswagen",
+    "modelo": "T-Cross",
+    "ano": 2023,
+    "cor": "Vermelho"
+  },
+  {
+    "id": 34,
+    "placa": "QWI6P73",
+    "marca": "Renault",
+    "modelo": "Sandero",
+    "ano": 2018,
+    "cor": "Cinza"
+  },
+  {
+    "id": 35,
+    "placa": "TQX2C46",
+    "marca": "Honda",
+    "modelo": "HR-V",
+    "ano": 2025,
+    "cor": "Branco"
+  },
+  {
+    "id": 36,
+    "placa": "JXJ9S72",
+    "marca": "Renault",
+    "modelo": "Logan",
+    "ano": 2017,
+    "cor": "Azul"
+  },
+  {
+    "id": 37,
+    "placa": "RYR6O53",
+    "marca": "Ford",
+    "modelo": "Ranger",
+    "ano": 2015,
+    "cor": "Verde"
+  },
+  {
+    "id": 38,
+    "placa": "BKX7W66",
+    "marca": "Volkswagen",
+    "modelo": "T-Cross",
+    "ano": 2012,
+    "cor": "Prata"
+  },
+  {
+    "id": 39,
+    "placa": "QSK1O18",
+    "marca": "Renault",
+    "modelo": "Kwid",
+    "ano": 2023,
+    "cor": "Prata"
+  },
+  {
+    "id": 40,
+    "placa": "NUE1P45",
+    "marca": "Nissan",
+    "modelo": "Versa",
+    "ano": 2022,
+    "cor": "Preto"
+  },
+  {
+    "id": 41,
+    "placa": "KVR6K78",
+    "marca": "Fiat",
+    "modelo": "Strada",
+    "ano": 2013,
+    "cor": "Cinza"
+  },
+  {
+    "id": 42,
+    "placa": "UVJ3X16",
+    "marca": "Chevrolet",
+    "modelo": "Spin",
+    "ano": 2023,
+    "cor": "Preto"
+  },
+  {
+    "id": 43,
+    "placa": "OFW4A05",
+    "marca": "Fiat",
+    "modelo": "Uno",
+    "ano": 2017,
+    "cor": "Azul"
+  },
+  {
+    "id": 44,
+    "placa": "NEH8N92",
+    "marca": "Volkswagen",
+    "modelo": "Polo",
+    "ano": 2013,
+    "cor": "Verde"
+  },
+  {
+    "id": 45,
+    "placa": "TVH7S23",
+    "marca": "Renault",
+    "modelo": "Duster",
+    "ano": 2019,
+    "cor": "Vermelho"
+  },
+  {
+    "id": 46,
+    "placa": "VAZ7J82",
+    "marca": "Chevrolet",
+    "modelo": "Tracker",
+    "ano": 2017,
+    "cor": "Vermelho"
+  },
+  {
+    "id": 47,
+    "placa": "UNW4O43",
+    "marca": "Hyundai",
+    "modelo": "Creta",
+    "ano": 2013,
+    "cor": "Cinza"
+  },
+  {
+    "id": 48,
+    "placa": "MSL9J40",
+    "marca": "Hyundai",
+    "modelo": "Creta",
+    "ano": 2012,
+    "cor": "Branco"
+  },
+  {
+    "id": 49,
+    "placa": "TXP4Y39",
+    "marca": "Honda",
+    "modelo": "Fit",
+    "ano": 2022,
+    "cor": "Cinza"
+  },
+  {
+    "id": 50,
+    "placa": "TIV2U10",
+    "marca": "Toyota",
+    "modelo": "Etios",
+    "ano": 2012,
+    "cor": "Azul"
+  }
+]
